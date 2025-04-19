@@ -4,7 +4,7 @@ import java.util.List;
 
 abstract class Expr {
   interface Visitor<R> {
-    R visitTernaryExpr(Ternary expr);
+    // R visitTernaryExpr(Ternary expr);
     R visitBinaryExpr(Binary expr);
     R visitGroupingExpr(Grouping expr);
     R visitLiteralExpr(Literal expr);
@@ -19,10 +19,10 @@ abstract class Expr {
       this.right = right;
     }
 
-    @Override
-    <R> R accept(Visitor<R> visitor) {
-      return visitor.visitTernaryExpr(this);
-    }
+    // @Override
+    // <R> R accept(Visitor<R> visitor) {
+    //   return visitor.visitTernaryExpr(this);
+    // }
 
     final Expr left;
     final Token firstOperator;

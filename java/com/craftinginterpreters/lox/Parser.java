@@ -14,7 +14,7 @@ class Parser {
         }
 
         private Expr expression() {
-            return comma();
+            return equality();
         }
 
         Expr parse() {
@@ -25,28 +25,28 @@ class Parser {
             }
         }
 
-        private Expr comma() {
-            Expr expr = ternary();
-            while(match(COMMA)) {
-                Token operator = previous();
-                Expr right = ternary();
-                expr = new Expr.Binary(expr, operator, right);
-            }
+        // private Expr comma() {
+        //     Expr expr = ternary();
+        //     while(match(COMMA)) {
+        //         Token operator = previous();
+        //         Expr right = ternary();
+        //         expr = new Expr.Binary(expr, operator, right);
+        //     }
 
-            return expr;        
-        }
+        //     return expr;        
+        // }
 
-        private Expr ternary() {
-            Expr expr = equality();
-            while(match(QUESTION)) {
-                Token firstOprtr = previous();
-                Expr mid = equality();
-                Token secondOprtr = consume(COLON, "Expected ':' in ternary operation.");
-                Expr right = equality();
-                expr = new Expr.Ternary(expr, firstOprtr, mid, secondOprtr, right);
-            }
-            return expr;
-        }
+        // private Expr ternary() {
+        //     Expr expr = equality();
+        //     while(match(QUESTION)) {
+        //         Token firstOprtr = previous();
+        //         Expr mid = equality();
+        //         Token secondOprtr = consume(COLON, "Expected ':' in ternary operation.");
+        //         Expr right = equality();
+        //         expr = new Expr.Ternary(expr, firstOprtr, mid, secondOprtr, right);
+        //     }
+        //     return expr;
+        // }
 
 
         private Expr equality() {
