@@ -114,7 +114,8 @@ class Interpreter implements Expr.Visitor<Object> {
                 checkNumberOperands(expr.operator, left, right);
                 return (double)left * (double)right;
             case SLASH:
-                checkNumberOperands(expr.operator, left, right);    
+                checkNumberOperands(expr.operator, left, right); 
+                if ((double)right == 0) throw new RuntimeError(expr.operator, "Cannot divied by 0");  
                 return (double)left / (double)right;
 
         }
