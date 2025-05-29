@@ -9,6 +9,7 @@ abstract class Stmt {
     R visitIfStmt(If stmt);
     R visitWhileStmt(While stmt);
     R visitPrintStmt(Print stmt);
+    R visitBreakStmt(Break stmt);
     R visitVarStmt(Var stmt);
   }
   static class Block extends Stmt {
@@ -76,6 +77,18 @@ abstract class Stmt {
     }
 
     final Expr expression;
+  }
+  static class Break extends Stmt {
+    Break(Token token) {
+      this.token = token;
+    }
+
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+      return visitor.visitBreakStmt(this);
+    }
+
+    final Token token;
   }
   static class Var extends Stmt {
     Var(Token name, Expr initializer) {
